@@ -5,10 +5,11 @@ const getTextHighlight = function () {
   let newContent = "";
 
   while (position !== -1) {
-    newContent = content.slice(0, position);
-    newContent = `<span style = "background-color : red ">${content.slice(position, position + textSearch.length)}</span>`;
+    newContent += content.slice(0, position);
+    newContent += `<span style = "background-color : red ">${content.slice(position, position + textSearch.length)}</span>`;
+    content = content.slice(position + textSearch.length);
     position = content.toLowerCase().indexOf(textSearch.toLowerCase(), position + textSearch.length);
   }
-  newContent = content.slice(position + textSearch.length);
-  content = newContent;
+  newContent = newContent + content;
+  document.getElementById('text').innerHTML = newContent;
 }
